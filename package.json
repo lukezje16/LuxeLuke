@@ -1,0 +1,15 @@
+{
+  "name": "e-commerce-site",
+  "version": "2.0.0",
+  "description": "eCommerce app built with MERN stack",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "author": "Luke Carty",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
