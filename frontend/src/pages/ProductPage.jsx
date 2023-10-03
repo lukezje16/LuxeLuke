@@ -1,7 +1,6 @@
 import React from "react";
 import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
 import { useParams } from "react-router-dom";
-
 import { Link } from "react-router-dom";
 import {
   Row,
@@ -12,8 +11,11 @@ import {
   Button,
   ListGroupItem,
 } from "react-bootstrap";
+
+//import components that make up the page
 import Rating from "../components/Rating";
 import Loader from "../components/Loader.jsx";
+import Message from "../components/Message";
 
 export default function ProductPage() {
   //fetches the id from the url
@@ -33,7 +35,9 @@ export default function ProductPage() {
       {isLoading ? (
         <Loader></Loader>
       ) : error ? (
-        <div>{error?.data?.message || error.error}</div>
+        <Message variant="danger">
+          {error?.data?.message || error.error}
+        </Message>
       ) : (
         <>
           <Row>
