@@ -13,6 +13,7 @@ import {
   ListGroupItem,
 } from "react-bootstrap";
 import Rating from "../components/Rating";
+import Loader from "../components/Loader.jsx";
 
 export default function ProductPage() {
   //fetches the id from the url
@@ -30,7 +31,7 @@ export default function ProductPage() {
       </Link>
 
       {isLoading ? (
-        <h2>Loading...</h2>
+        <Loader></Loader>
       ) : error ? (
         <div>{error?.data?.message || error.error}</div>
       ) : (
