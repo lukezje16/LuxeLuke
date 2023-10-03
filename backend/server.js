@@ -3,7 +3,10 @@ import dotenv from "dotenv";
 //GET ACCESS TO THE ENV VARIABLES
 dotenv.config();
 import connectDB from "./config/db.js";
-import products from "./data/products.js";
+import productRoutes from "./routes/productRoutes.js";
+//import middleware
+import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
+
 //connect to mongo DB
 connectDB();
 
@@ -17,16 +20,11 @@ app.get("/", (req, res) => {
   res.send("api is running");
 });
 
-//all products
-app.get("/api/products", (req, res) => {
-  res.json(products);
-});
+//whenever we hit this route it will read from this file
+app.use("/api/products", productRoutes);
 
-//single product
-app.get("/api/products/:id", (req, res) => {
-  const product = products.find((p) => p._id === req.params.id);
-  res.json(product);
-});
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`server running on port ${port}`);
