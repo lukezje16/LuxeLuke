@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import logo from "../assets/logo.png";
 
 const Header = () => {
+  //access gloabl state
   const { cartItems } = useSelector((state) => state.cart);
 
   console.log(cartItems);
