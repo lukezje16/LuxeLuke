@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import connectDB from "./config/db.js";
 import productRoutes from "./routes/productRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 //import middleware
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
@@ -22,6 +23,8 @@ app.get("/", (req, res) => {
 
 //whenever we hit this route it will read from this file
 app.use("/api/products", productRoutes);
+//whenever we hit user route
+app.use("/api/users", userRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
