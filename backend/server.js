@@ -7,6 +7,7 @@ import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 //import middleware
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
+import cookieParser from "cookie-parser";
 
 //connect to mongo DB
 connectDB();
@@ -20,6 +21,9 @@ const app = express();
 //body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//cookie parser middle ware
+app.use(cookieParser());
 
 app.get("/", (req, res) => {
   res.send("api is running");
