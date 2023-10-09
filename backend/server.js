@@ -5,6 +5,7 @@ dotenv.config();
 import connectDB from "./config/db.js";
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
 //import middleware
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import cookieParser from "cookie-parser";
@@ -33,6 +34,8 @@ app.get("/", (req, res) => {
 app.use("/api/products", productRoutes);
 //whenever we hit user route
 app.use("/api/users", userRoutes);
+//whenever we hit order route
+app.use("/api/orders", orderRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
