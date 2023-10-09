@@ -23,9 +23,9 @@ const addOrderItems = asyncHandler(async (req, res) => {
     //create a new order
     const order = new Order({
       //map through the order items and return a new array with the product id
-      orderItems: orderItems.map((x) => ({
-        ...x,
-        product: x._id,
+      orderItems: orderItems?.map((item) => ({
+        ...item,
+        product: item._id,
         id: undefined,
       })),
       user: req.user._id,
