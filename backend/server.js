@@ -37,6 +37,11 @@ app.use("/api/users", userRoutes);
 //whenever we hit order route
 app.use("/api/orders", orderRoutes);
 
+//PAYPAL
+app.get("/api/config/paypal", (req, res) =>
+  res.send({ clientId: process.env.PAYPAL_CLIENT_ID })
+);
+
 app.use(notFound);
 app.use(errorHandler);
 
