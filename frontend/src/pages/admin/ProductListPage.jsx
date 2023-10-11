@@ -4,6 +4,7 @@ import { Table, Button, Row, Col } from "react-bootstrap";
 import {
   useGetProductsQuery,
   useCreateProductMutation,
+  useDeleteProductMutation,
 } from "../../slices/productsApiSlice";
 import Loader from "../../components/Loader";
 import Message from "../../components/Message";
@@ -14,9 +15,19 @@ const ProductListPage = () => {
   const { data: products, isLoading, error, refetch } = useGetProductsQuery();
   const [createProduct, { isLoading: loadingCreate }] =
     useCreateProductMutation();
+  const [deleteProduct, { isLoading: loadingDelete }] =
+    useDeleteProductMutation();
 
   async function deleteHandler(id) {
-    console.log("delete");
+    if (window.confirm("Are you sure you want to delete this product?")) {
+      try {
+        await deleteProduct(id);
+        refetch();
+        toast.success("Product deleted successfully");
+      } catch (error) {
+        toast.error(error?.data?.message || error.error);
+      }
+    }
   }
 
   async function createProductHandler() {
@@ -45,6 +56,7 @@ const ProductListPage = () => {
       </Row>
 
       {loadingCreate && <Loader></Loader>}
+      {loadingDelete && <Loader></Loader>}
 
       {isLoading ? (
         <Loader />

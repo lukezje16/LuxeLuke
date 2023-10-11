@@ -92,7 +92,8 @@ const PlaceOrderPage = () => {
                         </Col>
 
                         <Col md={4}>
-                          {item.qty} x £{item.price} = £{item.qty * item.price}
+                          ({item.qty} x £{item.price}) = £
+                          {Number(item.qty * item.price).toFixed(2)}
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -111,7 +112,7 @@ const PlaceOrderPage = () => {
               <ListGroup.Item>
                 <Row>
                   <Col>Items:</Col>
-                  <Col>£{cart.itemsPrice}</Col>
+                  <Col>£{cart.itemsPrice.toFixed(2)}</Col>
                 </Row>
               </ListGroup.Item>
 
