@@ -123,6 +123,20 @@ const getOrders = asyncHandler(async (req, res) => {
   res.status(200).json(orders);
 });
 
+//@description delete a order
+//@route get /api/orders/:id
+//@access Private/admin
+const deleteOrder = asyncHandler(async (req, res) => {
+  const order = await Order.findById(req.params.id);
+  if (order) {
+    await order.deleteOne({ _id: order._id });
+    res.status(200).json({ message: "order deleted" });
+  } else {
+    res.status(404);
+    throw new Error("order not found");
+  }
+});
+
 export {
   getOrders,
   addOrderItems,
@@ -130,4 +144,5 @@ export {
   getOrderById,
   updateOrderToPaid,
   updateOrderToDelivered,
+  deleteOrder,
 };
