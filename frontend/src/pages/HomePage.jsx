@@ -5,6 +5,7 @@ import Loader from "../components/Loader.jsx";
 import { useGetProductsQuery } from "../slices/productsApiSlice.js";
 import Message from "../components/Message.jsx";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Paginate from "../components/Paginate.jsx";
 
 const HomePage = () => {
@@ -33,6 +34,11 @@ const HomePage = () => {
               </Col>
             ))}
           </Row>
+          {keyword && (
+            <Link to="/" className="btn btn-light mb-4">
+              Go back
+            </Link>
+          )}
           <Paginate
             pages={data.pages}
             page={data.page}
