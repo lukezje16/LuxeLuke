@@ -5,12 +5,17 @@ import Product from "../models/productModel.js";
 //@route Get /api/products
 //@access Public
 const getProducts = asyncHandler(async (req, res) => {
-  const pageSize = 5;
+  const pageSize = 8;
   const page = Number(req.query.pageNumber) || 1;
-  //get total number of products
-  const count = await Product.countDocuments({});
 
-  const products = await Product.find({})
+  const keyword = req.query.keyword
+    ? { name: { $regex: req.query.keyword, $options: "i" } }
+    : {};
+
+  //get total number of products
+  const count = await Product.countDocuments({ ...keyword });
+  //find products based on page size and page number
+  const products = await Product.find({ ...keyword })
     .limit(pageSize)
     .skip(pageSize * (page - 1));
   //products found so return the products
