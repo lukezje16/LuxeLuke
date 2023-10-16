@@ -7,6 +7,7 @@ import Message from "../components/Message.jsx";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Paginate from "../components/Paginate.jsx";
+import ProductCarousel from "../components/ProductCarousel.jsx";
 
 const HomePage = () => {
   const { pageNumber, keyword } = useParams();
@@ -18,6 +19,13 @@ const HomePage = () => {
 
   return (
     <>
+      {!keyword ? (
+        <ProductCarousel></ProductCarousel>
+      ) : (
+        <Link to="/" className="btn btn-light mb-4">
+          Go back
+        </Link>
+      )}
       {isLoading ? (
         <Loader></Loader>
       ) : error ? (
@@ -34,11 +42,6 @@ const HomePage = () => {
               </Col>
             ))}
           </Row>
-          {keyword && (
-            <Link to="/" className="btn btn-light mb-4">
-              Go back
-            </Link>
-          )}
           <Paginate
             pages={data.pages}
             page={data.page}
