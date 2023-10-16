@@ -5,10 +5,21 @@ import Product from "../models/productModel.js";
 //@route Get /api/products
 //@access Public
 const getProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({});
+  const pageSize = 5;
+  const page = Number(req.query.pageNumber) || 1;
+  //get total number of products
+  const count = await Product.countDocuments({});
+
+  const products = await Product.find({})
+    .limit(pageSize)
+    .skip(pageSize * (page - 1));
   //products found so return the products
   if (products) {
-    return res.json(products);
+    return res.json({
+      products,
+      page,
+      pages: Math.ceil(count / pageSize),
+    });
   } else {
     //products not valid return the error
     res.status(404);
