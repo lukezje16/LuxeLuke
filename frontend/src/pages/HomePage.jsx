@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Paginate from "../components/Paginate.jsx";
 import ProductCarousel from "../components/ProductCarousel.jsx";
+import Meta from "../components/Meta.jsx";
 
 const HomePage = () => {
   const { pageNumber, keyword } = useParams();

@@ -27,6 +27,7 @@ import { addToCart } from "../slices/cartSlice.js";
 import Rating from "../components/Rating";
 import Loader from "../components/Loader.jsx";
 import Message from "../components/Message";
+import Meta from "../components/Meta";
 
 import { toast } from "react-toastify";
 
@@ -92,6 +93,7 @@ export default function ProductPage() {
         </Message>
       ) : (
         <>
+          <Meta title={product.name}></Meta>
           <Row>
             <Col md={5}>
               <Image src={product.image} alt={product.name} fluid />
