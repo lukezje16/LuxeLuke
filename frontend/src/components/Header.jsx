@@ -8,6 +8,7 @@ import { logout } from "../slices/authSlice.js";
 import { useSelector, useDispatch } from "react-redux";
 import logo from "../assets/logo.png";
 import SearchBox from "./SearchBox.jsx";
+import { resetCart } from "../slices/cartSlice.js";
 
 const Header = () => {
   //access gloabl state
@@ -26,6 +27,7 @@ const Header = () => {
       await logoutApiCall().unwrap();
       //clearing local storage
       dispatch(logout());
+      dispatch(resetCart());
       navigate("/login");
     } catch (error) {
       console.log(error);
