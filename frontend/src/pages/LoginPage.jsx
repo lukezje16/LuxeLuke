@@ -51,7 +51,7 @@ function LoginPage() {
         <Form.Group controlId="email" className="my-3">
           <Form.Label>Email Address</Form.Label>
           <Form.Control
-            type="email"
+            type="text"
             placeholder="Enter Email..."
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -61,7 +61,7 @@ function LoginPage() {
           <Form.Label>Password</Form.Label>
           <Form.Control
             type="password"
-            placeholder="Enter Password..."
+            placeholder="  Password..."
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           ></Form.Control>
